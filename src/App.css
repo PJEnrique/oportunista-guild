@@ -5,11 +5,17 @@
   text-align: center;
   position: relative; /* Ensure content doesn't overlap with background */
   z-index: 1; /* Ensure content is above the background */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh; /* Full height of the viewport */
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 /* Styling for the header, centered with a minimum height and white text */
 .App-header {
-  min-height: 100vh; /* Full height of the viewport */
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,11 +45,19 @@
   object-fit: cover; /* Ensure the GIF covers the container */
 }
 
-/* Styling for the form, centered with a light gray background */
-.App-form {
-  width: 80%;
-  max-width: 600px;
+/* Container for form and dashboard side by side */
+.main-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
   margin: auto;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* Styling for the form, light gray background */
+.App-form {
+  width: 50%;
   background-color: #f8f9fa; /* Light gray background */
   padding: 20px;
   border-radius: 8px;
@@ -53,6 +67,7 @@
 /* Styling for form groups, with margin and dark gray text */
 .form-group {
   margin-bottom: 20px;
+  color: #333;
 }
 
 /* Styling for labels, block display with bold font */
@@ -209,3 +224,53 @@ button[type="submit"]:hover {
   z-index: 1000; /* Ensure it's above other content */
 }
 
+/* Dashboard.css */
+.dashboard {
+  width: 50%;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard th, .dashboard td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.dashboard th {
+  background-color: #f4f4f4;
+}
+
+.dashboard tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.dashboard tbody tr:hover {
+  background-color: #eaeaea;
+}
+
+.dashboard tbody tr td {
+  color: #555;
+}
+
+.dashboard tbody tr td:nth-child(1) {
+  font-weight: bold;
+}
+
+.dashboard tbody tr td:nth-child(2),
+.dashboard tbody tr td:nth-child(3) {
+  text-align: center;
+}

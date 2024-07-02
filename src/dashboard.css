@@ -1,0 +1,65 @@
+.dashboard {
+  margin-top: 250px; /* Adjusted margin from the top */
+  margin-right: 80px; /* Adjusted margin from the right */
+  padding: 0; /* Remove padding to avoid extra space */
+  background-color: #fff; /* White background */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  max-height: 400px; /* Adjust max height as needed */
+  overflow: auto; /* Enable vertical scrolling */
+}
+
+.dashboard h2 {
+  margin-bottom: 20px; /* Adjust spacing as needed */
+  color: #333; /* Dark color for heading */
+  text-align: center; /* Center align the heading */
+  font-size: 24px; /* Example font size */
+  text-transform: uppercase; /* Uppercase text */
+}
+
+.dashboard table {
+  width: 100%;
+  margin: 0; /* Remove default margins */
+  border-collapse: collapse; /* Collapse table borders */
+}
+
+.dashboard th,
+.dashboard td {
+  padding: 15px; /* Increased padding for better spacing */
+  text-align: left; /* Align text to the left */
+  border-bottom: 1px solid #ddd; /* Light border bottom */
+}
+
+.dashboard th {
+  background-color: #f4f4f4; /* Light gray background for header */
+  position: sticky; /* Sticky header */
+  top: 0; /* Stick to the top of the container */
+  z-index: 1; /* Ensure it's above tbody content */
+  height: 60px; /* Adjusted height for thead cells */
+  line-height: 60px; /* Center content vertically */
+}
+
+.dashboard thead th {
+  background-color: #f4f4f4; /* Light gray background for thead */
+}
+
+.dashboard tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Alternating row background */
+}
+
+.dashboard tbody tr:hover {
+  background-color: #eaeaea; /* Hover state background */
+}
+
+.dashboard tbody tr td {
+  color: #555; /* Dark gray text color */
+}
+
+.dashboard tbody tr td:nth-child(1) {
+  font-weight: bold; /* Bold font for first column */
+}
+
+.dashboard tbody tr td:nth-child(2),
+.dashboard tbody tr td:nth-child(3) {
+  text-align: center; /* Center align specific columns */
+}

@@ -1,22 +1,22 @@
-// App.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import gifBackground from './img/background.gif'; 
+import Dashboard from '../src/dashboard.jsx';
+import { firestore } from './firebase'; // Assuming your Firebase configuration is in a separate file
 
 function App() {
   const [formData, setFormData] = useState({
     ign: '',
     growthRateProgress: '',
-    growthRateRank: '',
-    files: []
+    growthRateRank: ''
   });
 
-  const [fileNames, setFileNames] = useState([]);
+  const [fileList, setFileList] = useState([]);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [confirmedSubmit, setConfirmedSubmit] = useState(false);
   const [webhookUrl, setWebhookUrl] = useState('');
+  const [users, setUsers] = useState([]);
 
-  // Load webhook URL from localStorage on component mount
   useEffect(() => {
     const storedUrl = localStorage.getItem('webhookUrl');
     if (storedUrl) {
@@ -24,104 +24,118 @@ function App() {
     }
   }, []);
 
-  // Update webhook URL in localStorage when changed
   useEffect(() => {
     if (webhookUrl) {
       localStorage.setItem('webhookUrl', webhookUrl);
     }
   }, [webhookUrl]);
 
+  useEffect(() => {
+    // Fetch data from Firestore when component mounts
+    const fetchUsers = async () => {
+      try {
+        const snapshot = await firestore.collection('submissions').get();
+        const fetchedUsers = snapshot.docs.map(doc => doc.data());
+        setUsers(fetchedUsers);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if ((name === 'growthRateProgress' || name === 'growthRateRank') && !/^\d*(,\d*)*$/.test(value)) {
+      return;
+    }
     setFormData({ ...formData, [name]: value });
   };
 
   const handleFileChange = (e) => {
     const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
-    const selectedFiles = Array.from(e.target.files).filter(file => validImageTypes.includes(file.type));
+    const files = Array.from(e.target.files);
 
-    // Limit to maximum 3 files
-    const maxFiles = 3;
-    const remainingSlots = maxFiles - formData.files.length;
-
-    if (selectedFiles.length > remainingSlots) {
-      alert(`You can only upload ${maxFiles} files.`);
+    const filteredFiles = files.filter(file => validImageTypes.includes(file.type));
+    if (filteredFiles.length > 3) {
+      alert('You can upload a maximum of 3 files.');
       return;
     }
 
-    const updatedFiles = [...formData.files, ...selectedFiles.slice(0, remainingSlots)];
-    const updatedNames = updatedFiles.map(file => file.name);
-
-    setFormData({ ...formData, files: updatedFiles });
-    setFileNames(updatedNames);
+    setFileList(filteredFiles);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setShowConfirmationModal(true); // Show confirmation modal
+    setShowConfirmationModal(true);
   };
 
   const handleConfirmSubmit = async () => {
-    // Proceed with form submission
     setConfirmedSubmit(true);
     setShowConfirmationModal(false);
 
-    // Create a new FormData object to combine text and files
-    const form = new FormData();
-    form.append('payload_json', JSON.stringify({
-      content: `IGN: ${formData.ign}\nGrowth Rate Progress: ${formData.growthRateProgress}\nGrowth Rate Rank: ${formData.growthRateRank}`
-    }));
-
-    // Append each file to the FormData object
-    for (let i = 0; i < formData.files.length; i++) {
-      form.append(`file${i}`, formData.files[i]);
-    }
-
-    // Send the combined data to the Discord webhook
     try {
-      const response = await fetch(webhookUrl, {
-        method: 'POST',
-        body: form,
+      await sendToDiscord();
+      await firestore.collection('submissions').add({
+        ign: formData.ign,
+        growthRateProgress: formData.growthRateProgress,
+        growthRateRank: formData.growthRateRank,
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Success:', data);
+      console.log('Document successfully written to Firestore!');
 
-        // Reset form after successful submission
-        setFormData({
-          ign: '',
-          growthRateProgress: '',
-          growthRateRank: '',
-          files: []
-        });
-        setFileNames([]);
-        setConfirmedSubmit(false);
-      } else {
-        console.error('Error:', response.statusText);
-      }
+      // Update users state with the new submission
+      setUsers([...users, { ...formData }]);
+      setFormData({
+        ign: '',
+        growthRateProgress: '',
+        growthRateRank: ''
+      });
+      setFileList([]);
+      setConfirmedSubmit(false);
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error adding document: ', error);
     }
   };
 
   const handleCancelSubmit = () => {
-    setShowConfirmationModal(false); // Hide confirmation modal
+    setShowConfirmationModal(false);
   };
 
   const handleDeleteFile = (index) => {
-    const updatedFiles = [...formData.files];
+    const updatedFiles = [...fileList];
     updatedFiles.splice(index, 1);
-
-    const updatedNames = [...fileNames];
-    updatedNames.splice(index, 1);
-
-    setFormData({ ...formData, files: updatedFiles });
-    setFileNames(updatedNames);
+    setFileList(updatedFiles);
   };
 
   const handleWebhookUrlChange = (e) => {
     setWebhookUrl(e.target.value);
+  };
+
+  const sendToDiscord = async () => {
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('content', `IGN: ${formData.ign}\nProgress: ${formData.growthRateProgress}\nRank: ${formData.growthRateRank}`);
+
+      fileList.forEach((file, index) => {
+        formDataToSend.append(`file${index + 1}`, file);
+      });
+
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        body: formDataToSend,
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Error sending message to Discord:', errorText);
+      } else {
+        console.log('Message sent to Discord successfully!');
+      }
+    } catch (error) {
+      console.error('Error sending message to Discord:', error);
+    }
   };
 
   return (
@@ -158,11 +172,11 @@ function App() {
               <input type="file" id="files" name="files" onChange={handleFileChange} multiple accept="image/jpeg,image/png,image/gif" required />
             </div>
             <div className="file-names">
-              {fileNames.length > 0 && (
+              {fileList.length > 0 && (
                 <div className="file-names-list">
-                  {fileNames.map((name, index) => (
+                  {fileList.map((file, index) => (
                     <div key={index} className="file-name">
-                      <span>{name}</span>
+                      <span>{file.name}</span>
                       <button type="button" onClick={() => handleDeleteFile(index)}>Delete</button>
                     </div>
                   ))}
@@ -172,7 +186,6 @@ function App() {
             <button type="submit">Submit</button>
           </form>
 
-          {/* Confirmation Modal */}
           {showConfirmationModal && (
             <div className="confirmation-modal">
               <div className="confirmation-modal-content">
@@ -183,13 +196,13 @@ function App() {
             </div>
           )}
 
-          {/* Display success message */}
           {confirmedSubmit && (
             <div className="submission-success">
               <p>Form submitted successfully!</p>
             </div>
           )}
         </header>
+        <Dashboard users={users} />
       </div>
     </div>
   );
