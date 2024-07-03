@@ -14,6 +14,8 @@ function Dashboard({ users }) {
         <thead>
           <tr>
             <th>IGN</th>
+            <th>ACC</th>
+            <th>MQ</th>
             <th>Growth Rate Progress</th>
             <th>Growth Rate Rank</th>
           </tr>
@@ -22,6 +24,8 @@ function Dashboard({ users }) {
           {sortedUsers.map((user, index) => (
             <tr key={index}>
               <td>{user.ign}</td>
+              <td>{user.acc}</td>
+              <td>{user.mq}</td>
               <td>{user.growthRateProgress}</td>
               <td>{user.growthRateRank}</td>
             </tr>

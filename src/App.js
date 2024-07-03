@@ -7,6 +7,8 @@ import { firestore } from './firebase'; // Assuming your Firebase configuration 
 function App() {
   const [formData, setFormData] = useState({
     ign: '',
+    acc: '',
+    mq: '',
     growthRateProgress: '',
     growthRateRank: ''
   });
@@ -79,6 +81,8 @@ function App() {
       await sendToDiscord();
       await firestore.collection('submissions').add({
         ign: formData.ign,
+        acc: formData.acc,
+        mq: formData.mq,
         growthRateProgress: formData.growthRateProgress,
         growthRateRank: formData.growthRateRank,
       });
@@ -89,6 +93,8 @@ function App() {
       setUsers([...users, { ...formData }]);
       setFormData({
         ign: '',
+        acc: '',
+        mq: '',
         growthRateProgress: '',
         growthRateRank: ''
       });
@@ -116,7 +122,7 @@ function App() {
   const sendToDiscord = async () => {
     try {
       const formDataToSend = new FormData();
-      formDataToSend.append('content', `IGN: ${formData.ign}\nProgress: ${formData.growthRateProgress}\nRank: ${formData.growthRateRank}`);
+      formDataToSend.append('content', `IGN: ${formData.ign}\nACC: ${formData.acc}\nMQ: ${formData.mq}\nProgress: ${formData.growthRateProgress}\nRank: ${formData.growthRateRank}`);
 
       fileList.forEach((file, index) => {
         formDataToSend.append(`file${index + 1}`, file);
@@ -158,6 +164,14 @@ function App() {
             <div className="form-group">
               <label htmlFor="ign">IGN:</label>
               <input type="text" id="ign" name="ign" value={formData.ign} onChange={handleChange} placeholder="Fill your IGN" required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="acc">ACC:</label>
+              <input type="text" id="acc" name="acc" value={formData.acc} onChange={handleChange} placeholder="Enter your ACC" required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="mq">MQ:</label>
+              <input type="text" id="mq" name="mq" value={formData.mq} onChange={handleChange} placeholder="Enter your MQ" required />
             </div>
             <div className="form-group">
               <label htmlFor="growthRateProgress">Growth Rate Progress:</label>
