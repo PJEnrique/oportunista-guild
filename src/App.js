@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import gifBackground from './img/image.png'; 
+import gifBackground from './img/image.png';
 import Dashboard from '../src/dashboard.jsx';
 import { firestore } from './firebase'; // Assuming your Firebase configuration is in a separate file
 
@@ -37,7 +37,7 @@ function App() {
     const fetchUsers = async () => {
       try {
         const snapshot = await firestore.collection('submissions').get();
-        const fetchedUsers = snapshot.docs.map(doc => doc.data());
+        const fetchedUsers = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setUsers(fetchedUsers);
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -78,19 +78,32 @@ function App() {
     setShowConfirmationModal(false);
 
     try {
+      const existingUser = users.find(user => user.ign === formData.ign);
+      if (existingUser) {
+        // Update existing user data
+        await firestore.collection('submissions').doc(existingUser.id).update({
+          acc: formData.acc,
+          mq: formData.mq,
+          growthRateProgress: formData.growthRateProgress,
+          growthRateRank: formData.growthRateRank,
+        });
+        setUsers(users.map(user => (user.ign === formData.ign ? { ...user, ...formData } : user)));
+        console.log('Document successfully updated in Firestore!');
+      } else {
+        // Add new user data
+        const docRef = await firestore.collection('submissions').add({
+          ign: formData.ign,
+          acc: formData.acc,
+          mq: formData.mq,
+          growthRateProgress: formData.growthRateProgress,
+          growthRateRank: formData.growthRateRank,
+        });
+        setUsers([...users, { id: docRef.id, ...formData }]);
+        console.log('Document successfully written to Firestore!');
+      }
+
       await sendToDiscord();
-      await firestore.collection('submissions').add({
-        ign: formData.ign,
-        acc: formData.acc,
-        mq: formData.mq,
-        growthRateProgress: formData.growthRateProgress,
-        growthRateRank: formData.growthRateRank,
-      });
 
-      console.log('Document successfully written to Firestore!');
-
-      // Update users state with the new submission
-      setUsers([...users, { ...formData }]);
       setFormData({
         ign: '',
         acc: '',
@@ -101,7 +114,7 @@ function App() {
       setFileList([]);
       setConfirmedSubmit(false);
     } catch (error) {
-      console.error('Error adding document: ', error);
+      console.error('Error adding or updating document: ', error);
     }
   };
 
