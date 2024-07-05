@@ -13,11 +13,11 @@ function Dashboard({ users }) {
       <table>
         <thead>
           <tr>
-            <th>IGN</th>
-            <th>ACC</th>
-            <th>MQ</th>
-            <th>Growth Rate Progress</th>
-            <th>Growth Rate Rank</th>
+            <th>Ign - Class</th>
+            <th>Accuracy</th>
+            <th>Main Quest</th>
+            <th>Growth rate progress</th>
+            <th>Growth rate rank</th>
           </tr>
         </thead>
         <tbody>

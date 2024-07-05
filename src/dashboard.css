@@ -21,6 +21,7 @@
   width: 100%; /* Ensure table fills the container */
   border-collapse: collapse;
   table-layout: fixed; /* Fixed table layout for better responsiveness */
+  word-wrap: break-word; /* Break words to ensure they don't overflow */
 }
 
 .dashboard th,
@@ -28,6 +29,7 @@
   padding: 8px; /* Reduced padding for a slimmer table */
   text-align: center; /* Center align text */
   border-bottom: 1px solid #ddd;
+  word-wrap: break-word; /* Ensure content wraps within cells */
 }
 
 .dashboard th {
@@ -59,4 +61,40 @@
 .dashboard tbody tr td:nth-child(4),
 .dashboard tbody tr td:nth-child(5) {
   text-align: center; /* Center align for other columns */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .dashboard {
+    width: calc(100% - 100px); /* Adjust width for smaller screens */
+    margin-right: 20px; /* Adjust margin for smaller screens */
+    margin-top: 150px; /* Adjust margin for smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    width: calc(100% - 50px); /* Adjust width for tablet screens */
+    margin-right: 10px; /* Adjust margin for tablet screens */
+    margin-top: 100px; /* Adjust margin for tablet screens */
+  }
+
+  .dashboard th,
+  .dashboard td {
+    padding: 4px; /* Further reduce padding for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    width: 100%; /* Full width for mobile screens */
+    margin-right: 0; /* No right margin for mobile screens */
+    margin-top: 50px; /* Adjust margin for mobile screens */
+  }
+
+  .dashboard th,
+  .dashboard td {
+    padding: 2px; /* Minimal padding for mobile screens */
+    font-size: 12px; /* Smaller font size for mobile screens */
+  }
 }

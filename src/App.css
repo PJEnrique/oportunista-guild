@@ -55,10 +55,10 @@
   gap: 20px;
 }
 
-/* Styling for the form, light gray background */
+/* Styling for the form, light gray background with opacity */
 .App-form {
   width: 50%;
-  background-color: #f8f9fa; /* Light gray background */
+  background-color: rgba(248, 249, 250, 0.486); /* Light gray background with 80% opacity */
   padding: 20px;
   margin-top: 20px;
   border-radius: 8px;
@@ -84,7 +84,7 @@ input[type="file"] {
   width: calc(100% - 16px); /* Adjusting for padding */
   padding: 8px;
   font-size: 16px;
-  border: 1px solid #ced4da; /* Light gray border */
+  border: 1px solid black; /* Light gray border */
   border-radius: 4px;
   box-sizing: border-box;
 }

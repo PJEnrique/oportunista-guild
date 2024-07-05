@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import gifBackground from './img/background.gif'; 
+import gifBackground from './img/image.png'; 
 import Dashboard from '../src/dashboard.jsx';
 import { firestore } from './firebase'; // Assuming your Firebase configuration is in a separate file
 
@@ -162,23 +162,23 @@ function App() {
           </div>
           <form onSubmit={handleSubmit} className="App-form">
             <div className="form-group">
-              <label htmlFor="ign">IGN:</label>
-              <input type="text" id="ign" name="ign" value={formData.ign} onChange={handleChange} placeholder="Fill your IGN" required />
+              <label htmlFor="ign">Ign - class:</label>
+              <input type="text" id="ign" name="ign" value={formData.ign} onChange={handleChange} placeholder="Fill your IGN - Class" required />
             </div>
             <div className="form-group">
-              <label htmlFor="acc">ACC:</label>
+              <label htmlFor="acc">Accuracy:</label>
               <input type="text" id="acc" name="acc" value={formData.acc} onChange={handleChange} placeholder="Enter your ACC" required />
             </div>
             <div className="form-group">
-              <label htmlFor="mq">MQ:</label>
+              <label htmlFor="mq">Main Quest:</label>
               <input type="text" id="mq" name="mq" value={formData.mq} onChange={handleChange} placeholder="Enter your MQ" required />
             </div>
             <div className="form-group">
-              <label htmlFor="growthRateProgress">Growth Rate Progress:</label>
+              <label htmlFor="growthRateProgress">Growth rate progress:</label>
               <input type="text" id="growthRateProgress" name="growthRateProgress" value={formData.growthRateProgress} onChange={handleChange} placeholder="Enter your Growth Rate Progress" required />
             </div>
             <div className="form-group">
-              <label htmlFor="growthRateRank">Growth Rate Rank:</label>
+              <label htmlFor="growthRateRank">Growth rate rank:</label>
               <input type="text" id="growthRateRank" name="growthRateRank" value={formData.growthRateRank} onChange={handleChange} placeholder="Enter your Growth Rate Rank" required />
             </div>
             <div className="form-group">
