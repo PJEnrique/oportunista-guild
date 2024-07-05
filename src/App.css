@@ -55,10 +55,10 @@
   gap: 20px;
 }
 
-/* Styling for the form, light gray background with opacity */
+/* Styling for the form, with custom colors */
 .App-form {
   width: 50%;
-  background-color: rgba(248, 249, 250, 0.486); /* Light gray background with 80% opacity */
+  background-color: rgba(198, 175, 142, 0.9); /* Light tan background with opacity */
   padding: 20px;
   margin-top: 20px;
   border-radius: 8px;
@@ -67,7 +67,7 @@
 
 /* Styling for form groups, with margin and dark gray text */
 .form-group {
-  color: #333;
+  color: white;
 }
 
 /* Styling for labels, block display with bold font */
@@ -75,7 +75,7 @@ label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
-  color: black; /* Dark gray text color */
+  color: black; /* Blue text color */
 }
 
 /* Styling for text inputs and file inputs */
@@ -84,16 +84,16 @@ input[type="file"] {
   width: calc(100% - 16px); /* Adjusting for padding */
   padding: 8px;
   font-size: 16px;
-  border: 1px solid black; /* Light gray border */
+  border: 1px solid #315c86; /* Blue border */
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-/* Styling for focused inputs, with blue border */
+/* Styling for focused inputs, with dark blue border */
 input[type="text"]:focus,
 input[type="file"]:focus {
   outline: none;
-  border-color: #007bff; /* Blue border on focus */
+  border-color: #043441; /* Darker blue border on focus */
 }
 
 /* Styling for the list of uploaded file names */
@@ -108,7 +108,8 @@ input[type="file"]:focus {
   justify-content: space-between;
   padding: 8px;
   border-radius: 4px;
-  background-color: rgb(109, 108, 108); /* Light gray background for each file */
+  background-color: #56493e; /* Dark brown background for each file */
+  color: white;
 }
 
 /* Styling for file name text, with ellipsis for overflow */
@@ -137,7 +138,7 @@ input[type="file"]:focus {
 
 /* Styling for submit button, with blue background and white text */
 button[type="submit"] {
-  background-color: #007bff;
+  background-color: #315c86; /* Blue background */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -147,12 +148,12 @@ button[type="submit"] {
 
 /* Hover styling for submit button */
 button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: #043441;
 }
 
-/* Styling for webhook URL input label, white text */
+/* Styling for webhook URL input label, blue text */
 .webhook-url-input label {
-  color: white; 
+  color: white;
 }
 
 /* Styling for confirmation modal */

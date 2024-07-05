@@ -1,10 +1,11 @@
 /* Dashboard.css */
+
 .dashboard {
   width: calc(50% - 200px); /* Adjusted width */
   margin-top: 250px;
   margin-right: 80px;
   padding: 0; /* Reduced padding for a slimmer appearance */
-  background-color: #fff;
+  background-color: #c6af8e; /* Light tan background */
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-height: 550px; /* Maximum height */
@@ -14,7 +15,7 @@
 
 .dashboard h2 {
   margin-bottom: 10px; /* Reduced margin */
-  color: #333;
+  color: black; /* Dark blue color for headings */
 }
 
 .dashboard table {
@@ -28,27 +29,30 @@
 .dashboard td {
   padding: 8px; /* Reduced padding for a slimmer table */
   text-align: center; /* Center align text */
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #56493e; /* Dark brown border */
+  border-left: 1px solid #56493e; /* Dark brown border for columns */
+  border-right: 1px solid #56493e; /* Dark brown border for columns */
   word-wrap: break-word; /* Ensure content wraps within cells */
 }
 
 .dashboard th {
-  background-color: #f4f4f4;
+  background-color: white; /* Blue background for table headers */
+  color: black; /* White text color for headers */
   position: sticky; /* Sticky header */
   top: 0; /* Stick to the top of the container */
   z-index: 1; /* Ensure it's above tbody content */
 }
 
 .dashboard tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: #c6af8e; /* Light gray background for even rows */
 }
 
 .dashboard tbody tr:hover {
-  background-color: #eaeaea;
+  background-color: #c6af8e; /* Light tan background on hover */
 }
 
 .dashboard tbody tr td {
-  color: #555;
+  color: black; /* Dark blue text color */
 }
 
 .dashboard tbody tr td:nth-child(1) {
