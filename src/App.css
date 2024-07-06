@@ -1,19 +1,17 @@
-/* App.css */
 
-/* Ensure the whole page is centered and text aligned */
 .App {
   text-align: center;
-  position: relative; /* Ensure content doesn't overlap with background */
-  z-index: 1; /* Ensure content is above the background */
+  position: relative;
+  z-index: 1; 
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: 100vh; /* Full height of the viewport */
+  height: 100vh; 
   padding: 20px;
   box-sizing: border-box;
 }
 
-/* Styling for the header, centered with a minimum height and white text */
+
 .App-header {
   width: 100%;
   display: flex;
@@ -24,28 +22,28 @@
   color: white;
 }
 
-/* Styling for the background container holding the GIF */
+
 .background-container {
-  position: fixed; /* Fixed position to cover the whole viewport */
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; /* Behind all other content */
-  overflow: hidden; /* Hide overflow beyond viewport */
+  z-index: -1; 
+  overflow: hidden; 
 }
 
-/* Styling for the GIF itself, covering the entire background */
+
 .background-gif {
-  position: absolute; /* Absolute position inside the background container */
+  position: absolute; 
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure the GIF covers the container */
+  object-fit: cover; 
 }
 
-/* Styling for form and dashboard side by side */
+
 .main-container {
   display: flex;
   width: 100%;
@@ -55,64 +53,64 @@
   gap: 20px;
 }
 
-/* Styling for the form, with custom colors */
+
 .App-form {
   width: 50%;
-  background-color: rgba(198, 175, 142, 0.9); /* Light tan background with opacity */
+  background-color: rgba(198, 175, 142, 0.9); 
   padding: 20px;
   margin-top: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Styling for form groups, with margin and dark gray text */
+
 .form-group {
   color: white;
 }
 
-/* Styling for labels, block display with bold font */
+
 label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
-  color: black; /* Blue text color */
+  color: black; 
 }
 
-/* Styling for text inputs and file inputs */
+
 input[type="text"],
 input[type="file"] {
-  width: calc(100% - 16px); /* Adjusting for padding */
+  width: calc(100% - 16px);
   padding: 8px;
   font-size: 16px;
-  border: 1px solid #315c86; /* Blue border */
+  border: 1px solid #315c86;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-/* Styling for focused inputs, with dark blue border */
+
 input[type="text"]:focus,
 input[type="file"]:focus {
   outline: none;
-  border-color: #043441; /* Darker blue border on focus */
+  border-color: #043441; 
 }
 
-/* Styling for the list of uploaded file names */
+
 .file-names {
   margin-top: 15px;
 }
 
-/* Styling for each file name container */
+
 .file-name {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 8px;
   border-radius: 4px;
-  background-color: #56493e; /* Dark brown background for each file */
+  background-color: #56493e; 
   color: white;
 }
 
-/* Styling for file name text, with ellipsis for overflow */
+
 .file-name span {
   flex: 1;
   overflow: hidden;
@@ -121,7 +119,8 @@ input[type="file"]:focus {
   font-size: 14px;
 }
 
-/* Styling for delete button, with red background */
+
+
 .file-name button {
   background-color: #dc3545;
   color: white;
@@ -131,14 +130,17 @@ input[type="file"]:focus {
   border-radius: 4px;
 }
 
-/* Hover styling for delete button */
+
+
 .file-name button:hover {
   background-color: #c82333;
 }
 
-/* Styling for submit button, with blue background and white text */
+
+
 button[type="submit"] {
-  background-color: #315c86; /* Blue background */
+  background-color: #315c86; 
+
   color: white;
   border: none;
   padding: 10px 20px;
@@ -146,24 +148,24 @@ button[type="submit"] {
   border-radius: 4px;
 }
 
-/* Hover styling for submit button */
+
 button[type="submit"]:hover {
   background-color: #043441;
 }
 
-/* Styling for webhook URL input label, blue text */
+
 .webhook-url-input label {
   color: white;
 }
 
-/* Styling for confirmation modal */
+
 .confirmation-modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -191,24 +193,24 @@ button[type="submit"]:hover {
 }
 
 .confirmation-modal-content button:first-child {
-  background-color: #007bff; /* Blue button */
+  background-color: #007bff; 
   color: white;
 }
 
 .confirmation-modal-content button:last-child {
-  background-color: #dc3545; /* Red button */
+  background-color: #dc3545; 
   color: white;
 }
 
-/* Styling for submission success message */
+
 .submission-success {
   position: fixed;
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Centering trick */
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
   padding: 10px 20px;
-  background-color: #28a745; /* Green background */
+  background-color: #28a745; 
   color: white;
   border-radius: 4px;
-  z-index: 1000; /* Ensure it's above other content */
+  z-index: 1000; 
 }

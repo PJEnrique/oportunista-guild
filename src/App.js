@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import gifBackground from './img/image.png';
 import Dashboard from '../src/dashboard.jsx';
-import { firestore } from './firebase'; // Assuming your Firebase configuration is in a separate file
-
+import { firestore } from './firebase'; 
 function App() {
   const [formData, setFormData] = useState({
     ign: '',
@@ -33,7 +32,7 @@ function App() {
   }, [webhookUrl]);
 
   useEffect(() => {
-    // Fetch data from Firestore when component mounts
+
     const fetchUsers = async () => {
       try {
         const snapshot = await firestore.collection('submissions').get();
@@ -80,7 +79,7 @@ function App() {
     try {
       const existingUser = users.find(user => user.ign === formData.ign);
       if (existingUser) {
-        // Update existing user data
+        
         await firestore.collection('submissions').doc(existingUser.id).update({
           acc: formData.acc,
           mq: formData.mq,
@@ -90,7 +89,7 @@ function App() {
         setUsers(users.map(user => (user.ign === formData.ign ? { ...user, ...formData } : user)));
         console.log('Document successfully updated in Firestore!');
       } else {
-        // Add new user data
+
         const docRef = await firestore.collection('submissions').add({
           ign: formData.ign,
           acc: formData.acc,

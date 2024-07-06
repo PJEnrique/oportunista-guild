@@ -2,7 +2,7 @@ import React from 'react';
 import './dashboard.css';
 
 function Dashboard({ users }) {
-  // Sorting users based on growthRateProgress and growthRateRank
+ 
   const sortedUsers = users.sort((a, b) => {
     return b.growthRateProgress - a.growthRateProgress || a.growthRateRank - b.growthRateRank;
   });

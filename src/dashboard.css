@@ -1,104 +1,104 @@
 /* Dashboard.css */
 
 .dashboard {
-  width: calc(50% - 200px); /* Adjusted width */
+  width: calc(50% - 200px);
   margin-top: 250px;
   margin-right: 80px;
-  padding: 0; /* Reduced padding for a slimmer appearance */
-  background-color: #c6af8e; /* Light tan background */
+  padding: 0;
+  background-color: #c6af8e;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-height: 550px; /* Maximum height */
-  overflow-y: auto; /* Vertical scrolling */
-  position: relative; /* Ensure position for sticky header */
+  max-height: 550px;
+  overflow-y: auto;
+  position: relative;
 }
 
 .dashboard h2 {
-  margin-bottom: 10px; /* Reduced margin */
-  color: black; /* Dark blue color for headings */
+  margin-bottom: 10px; 
+  color: black; 
 }
 
 .dashboard table {
-  width: 100%; /* Ensure table fills the container */
+  width: 100%; 
   border-collapse: collapse;
-  table-layout: fixed; /* Fixed table layout for better responsiveness */
-  word-wrap: break-word; /* Break words to ensure they don't overflow */
+  table-layout: fixed; 
+  word-wrap: break-word; 
 }
 
 .dashboard th,
 .dashboard td {
-  padding: 8px; /* Reduced padding for a slimmer table */
-  text-align: center; /* Center align text */
-  border-bottom: 1px solid #56493e; /* Dark brown border */
-  border-left: 1px solid #56493e; /* Dark brown border for columns */
-  border-right: 1px solid #56493e; /* Dark brown border for columns */
-  word-wrap: break-word; /* Ensure content wraps within cells */
+  padding: 8px; 
+  text-align: center; 
+  border-bottom: 1px solid #56493e; 
+  border-left: 1px solid #56493e; 
+  border-right: 1px solid #56493e; 
+  word-wrap: break-word;
 }
 
 .dashboard th {
-  background-color: white; /* Blue background for table headers */
-  color: black; /* White text color for headers */
-  position: sticky; /* Sticky header */
-  top: 0; /* Stick to the top of the container */
-  z-index: 1; /* Ensure it's above tbody content */
+  background-color: white; 
+  color: black; 
+  position: sticky; 
+  top: 0; 
+  z-index: 1; 
 }
 
 .dashboard tbody tr:nth-child(even) {
-  background-color: #c6af8e; /* Light gray background for even rows */
+  background-color: #c6af8e; 
 }
 
 .dashboard tbody tr:hover {
-  background-color: #c6af8e; /* Light tan background on hover */
+  background-color: #c6af8e; 
 }
 
 .dashboard tbody tr td {
-  color: black; /* Dark blue text color */
+  color: black; 
 }
 
 .dashboard tbody tr td:nth-child(1) {
   font-weight: bold;
-  text-align: left; /* Align text to the left for the first column */
+  text-align: left; 
 }
 
 .dashboard tbody tr td:nth-child(2),
 .dashboard tbody tr td:nth-child(3),
 .dashboard tbody tr td:nth-child(4),
 .dashboard tbody tr td:nth-child(5) {
-  text-align: center; /* Center align for other columns */
+  text-align: center; 
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 1200px) {
   .dashboard {
-    width: calc(100% - 100px); /* Adjust width for smaller screens */
-    margin-right: 20px; /* Adjust margin for smaller screens */
-    margin-top: 150px; /* Adjust margin for smaller screens */
+    width: calc(100% - 100px); 
+    margin-right: 20px;
+    margin-top: 150px;
   }
 }
 
 @media (max-width: 768px) {
   .dashboard {
-    width: calc(100% - 50px); /* Adjust width for tablet screens */
-    margin-right: 10px; /* Adjust margin for tablet screens */
-    margin-top: 100px; /* Adjust margin for tablet screens */
+    width: calc(100% - 50px); 
+    margin-right: 10px; 
+    margin-top: 100px; 
   }
 
   .dashboard th,
   .dashboard td {
-    padding: 4px; /* Further reduce padding for smaller screens */
+    padding: 4px; 
   }
 }
 
 @media (max-width: 480px) {
   .dashboard {
-    width: 100%; /* Full width for mobile screens */
-    margin-right: 0; /* No right margin for mobile screens */
-    margin-top: 50px; /* Adjust margin for mobile screens */
+    width: 100%; 
+    margin-right: 0; 
+    margin-top: 50px; 
   }
 
   .dashboard th,
   .dashboard td {
-    padding: 2px; /* Minimal padding for mobile screens */
-    font-size: 12px; /* Smaller font size for mobile screens */
+    padding: 2px; 
+    font-size: 12px; 
   }
 }
