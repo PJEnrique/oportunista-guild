@@ -161,7 +161,7 @@ function App() {
       <img src={gifBackground} alt="GIF Background" className="background-gif" />
       <div className="App">
         <header className="App-header">
-          <h1>OPORTUNISTA GUILD</h1>
+          <h1>*NAME* GUILD</h1>
           <div className="webhook-url-input">
             <label htmlFor="webhookUrl">Webhook URL:</label>
             <input
